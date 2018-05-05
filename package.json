@@ -1,0 +1,36 @@
+{
+  "name": "abon-baselib",
+  "version": "1.0.0",
+  "description": "abon specific baselib",
+  "main": "build/index.js",
+  "bin": "build/index.js",
+  "directories": {
+    "lib": "build/lib"
+  },
+  "scripts": {
+    "clean": "rimraf build",
+    "debug": "node-debug",
+    "build:ts": "tsc",
+    "build": "npm-run-all clean build:ts",
+    "lint": "./node_modules/tslint/bin/tslint ./src/{,**/}*.ts",
+    "xxx_preinstall": "rimraf node_modules",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abon888/abon-baselib.git"
+  },
+  "keywords": [
+    "abon",
+    "baselib"
+  ],
+  "author": "Akhil Patel, Vincent Tse, Terence Wong",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/abon888/abon-baselib/issues"
+  },
+  "homepage": "https://github.com/abon888/abon-baselib#readme",
+  "dependencies": {
+    "baselib": "file:../baselib"
+  }
+}
