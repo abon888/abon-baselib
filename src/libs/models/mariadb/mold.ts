@@ -1,22 +1,21 @@
 'use strict';
 
 import * as Sequelize from 'sequelize';
-import {Column, DataType, Default, Model, PrimaryKey, Table, Scopes, CreatedAt, UpdatedAt} from "sequelize-typescript";
+import {Column, DataType, Default, Model, PrimaryKey, ForeignKey, Table, Scopes, CreatedAt, UpdatedAt} from "sequelize-typescript";
 
 @Table
-export default class Mold extends Model<Mold> {
+export class Mold extends Model<Mold> {
 
-  @PrimaryKey
-  @Column
+  @PrimaryKey @Column(DataType.STRING)
   mold_id: string;
 
-  @Column
-  descriptions: string;
+  @Column(DataType.STRING)
+  description: string;
 
-  @CreatedAt @Column
+  @CreatedAt @Column(DataType.DATE)
   createdDate: Date;
 
-  @UpdatedAt @Column
+  @UpdatedAt @Column(DataType.DATE)
   updatedDate: Date;
 
   static scope(...args: any[]): typeof Mold {
@@ -26,3 +25,4 @@ export default class Mold extends Model<Mold> {
 
 }
 
+export default Mold;

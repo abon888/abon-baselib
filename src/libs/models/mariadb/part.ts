@@ -1,45 +1,57 @@
 'use strict';
 
 import * as Sequelize from 'sequelize';
-import {Column, DataType, Default, Model, PrimaryKey, Table, Scopes, CreatedAt, UpdatedAt} from "sequelize-typescript";
+import {Column, DataType, Default, Model, PrimaryKey, ForeignKey, Table, Scopes, CreatedAt, UpdatedAt} from "sequelize-typescript";
+
+import {Mold} from "./mold";
+
+@Scopes({
+  mold: {
+    include: [{
+      model: () => Mold,
+      through: {attributes: []},
+    }],
+  }
+})
 
 @Table
-export default class Part extends Model<Part> {
+export class Part extends Model<Part> {
 
   @PrimaryKey
-  @Column
+  @Column(DataType.STRING)
   part_id: string;
 
-  @Column
-  descriptions: string;
+  @Column(DataType.STRING)
+  description: string;
 
-  @Column
+  @Column(DataType.STRING)
   category: string;
 
-  @Column
+  @Column(DataType.STRING)
   material: string;
 
-  @Column
+  @ForeignKey(() => Mold) @Column(DataType.STRING)
+  mold_id: string;
+
+  @Column(DataType.STRING)
   weight_grams: string;
 
-  @Column
+  @Column(DataType.STRING)
   image: string;
 
-  @Default({})
-  @Column(DataType.JSON)
+  @Default({}) @Column(DataType.JSON)
   documents: string;
 
-  @Default({})
-  @Column(DataType.JSON)
+  @Default({}) @Column(DataType.JSON)
   sub_parts: string;
 
-  @Column
+  @Column(DataType.STRING)
   workflow_id: string;
 
-  @CreatedAt @Column
+  @CreatedAt @Column(DataType.DATE)
   createdDate: Date;
 
-  @UpdatedAt @Column
+  @UpdatedAt @Column(DataType.DATE)
   updatedDate: Date;
 
   static scope(...args: any[]): typeof Part {
@@ -49,3 +61,4 @@ export default class Part extends Model<Part> {
 
 }
 
+export default Part;
